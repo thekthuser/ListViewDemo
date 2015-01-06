@@ -31,7 +31,8 @@ public class MainListActivity extends ListActivity
         ListView listview = getListView();
         listview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "toast!", Toast.LENGTH_LONG).show();
+                String display = ((TextView) view).getText().toString();
+                Toast.makeText(getApplicationContext(), display, Toast.LENGTH_LONG).show();
             }
         });
 
