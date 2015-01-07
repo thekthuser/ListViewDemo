@@ -20,15 +20,22 @@ public class MainListActivity extends ListActivity
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.main);
 
-        String[] items = {
+        /*String[] items = {
             "item1", 
             "item2", 
             "item3"
-        };
+        };*/
 
-        this.setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, R.id.title, items));
+        //this.setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, R.id.title, items));
+        ObjectItem[] items = new ObjectItem[1];
+        items[0] = new ObjectItem(0, "item1");
 
+        CustomArrayAdapter adapter = new CustomArrayAdapter(this, R.layout.list_item, items);
+        //ListView listview = new ListView(this);
         ListView listview = getListView();
+        listview.setAdapter(adapter);
+
+        //ListView listview = getListView();
         listview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String display = ((TextView) view).getText().toString();
