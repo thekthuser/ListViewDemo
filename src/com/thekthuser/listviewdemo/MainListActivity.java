@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.view.View;
 import android.widget.TextView;
+import android.content.Intent;
 
 import android.widget.Toast;
 
@@ -38,8 +39,13 @@ public class MainListActivity extends ListActivity
         //ListView listview = getListView();
         listview.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String display = ((TextView) view).getText().toString();
-                Toast.makeText(getApplicationContext(), display, Toast.LENGTH_LONG).show();
+                //String display = ((TextView) view).getText().toString();
+                //Toast.makeText(getApplicationContext(), display, Toast.LENGTH_LONG).show();
+                String item_id = view.getTag().toString();
+                //String item_id = ((TextView) view).getTag().toString();
+                Intent i = new Intent(getApplicationContext(), ViewListItem.class);
+                i.putExtra("id", item_id);
+                startActivity(i);
             }
         });
 

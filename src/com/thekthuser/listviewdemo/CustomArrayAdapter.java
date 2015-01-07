@@ -32,6 +32,7 @@ public class CustomArrayAdapter extends ArrayAdapter<ObjectItem> {
 
         TextView title = (TextView) convertView.findViewById(R.id.title);
         title.setText(objectItem.title);
+        title.setTag(objectItem.itemId);
 
         return convertView;
 
