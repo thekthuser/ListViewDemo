@@ -64,6 +64,8 @@ public class MainActivity extends Activity
             @Override
             public void onClick(View view) {
                 Toast.makeText(getApplicationContext(), "test refresh", Toast.LENGTH_LONG).show();
+                //finish();
+                //startActivity(getIntent());
             }
         });
 
