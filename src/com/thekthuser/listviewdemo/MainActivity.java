@@ -25,34 +25,25 @@ public class MainActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        /*String[] items = {
-            "item1", 
-            "item2", 
-            "item3"
-        };*/
-
-        //this.setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, R.id.title, items));
-        ObjectItem[] items = new ObjectItem[1];
+        final ObjectItem[] items = new ObjectItem[1];
         items[0] = new ObjectItem(0, "item1");
 
         CustomArrayAdapter adapter = new CustomArrayAdapter(this, R.layout.list_item, items);
-        //ListView listview = new ListView(this);
-        //ListView listView = getListView();
         ListView listView = (ListView) findViewById(R.id.list);
 
-        /*LayoutInflater inflater = getLayoutInflater();
-        ViewGroup footer = (ViewGroup) inflater.inflate(R.layout.refresh_footer, listView, false);
-        listView.addFooterView(footer, null, false);*/
 
         listView.setAdapter(adapter);
 
-        //ListView listview = getListView();
         listView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //String display = ((TextView) view).getText().toString();
+                //String display = view.getText().toString();
+                //String display = Integer.toString(position);
+                //String display = items[position].title;
                 //Toast.makeText(getApplicationContext(), display, Toast.LENGTH_LONG).show();
-                String item_id = view.getTag().toString();
+                //String item_id = view.getTag().toString();
                 //String item_id = ((TextView) view).getTag().toString();
+                String item_id = Integer.toString(items[position].itemId);
                 Intent i = new Intent(getApplicationContext(), ViewListItem.class);
                 i.putExtra("id", item_id);
                 startActivity(i);
