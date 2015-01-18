@@ -101,10 +101,10 @@ public class MainActivity extends Activity {
                             refresh.setOnClickListener(new OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    Toast.makeText(getApplicationContext(), "test refresh", 
-                                        Toast.LENGTH_LONG).show();
-                                    //finish();
-                                    //startActivity(getIntent());
+                                    //Toast.makeText(getApplicationContext(), "test refresh", 
+                                        //Toast.LENGTH_LONG).show();
+                                    finish();
+                                    startActivity(getIntent());
                                 }
                             });
                         }
