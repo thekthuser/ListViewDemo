@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class CustomArrayAdapter extends ArrayAdapter<ObjectItem> {
+public class CustomArrayAdapter extends ArrayAdapter<Entry> {
     Context mContext;
     int layoutResourceId;
-    ObjectItem data[] = null;
+    Entry data[] = null;
 
-    public CustomArrayAdapter(Context mContext, int layoutResourceId, ObjectItem[] data) {
+    public CustomArrayAdapter(Context mContext, int layoutResourceId, Entry[] data) {
         super(mContext, layoutResourceId, data);
 
         this.layoutResourceId = layoutResourceId;
@@ -28,11 +28,11 @@ public class CustomArrayAdapter extends ArrayAdapter<ObjectItem> {
             convertView = inflater.inflate(layoutResourceId, parent, false);
         }
 
-        ObjectItem objectItem = data[position];
+        Entry entry = data[position];
 
         TextView title = (TextView) convertView.findViewById(R.id.title);
-        title.setText(objectItem.title);
-        title.setTag(objectItem.itemId);
+        title.setText(entry.name);
+        title.setTag(entry.entryId);
 
         return convertView;
 

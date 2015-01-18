@@ -53,18 +53,18 @@ public class MainActivity extends Activity {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
                 try {
                     JSONObject json_response = new JSONObject(response.body().string());
-                    final JSONArray entries = new JSONArray(json_response.getJSONObject("feed")
+                    final JSONArray json_entries = new JSONArray(json_response.getJSONObject("feed")
                         .getJSONArray("entry").toString());
 
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            final ObjectItem[] items = new ObjectItem[25];
+                            final Entry[] entries = new Entry[25];
                             
                             try {
-                                for (int i = 0; i < entries.length(); i++) {
-                                    JSONObject entry = entries.getJSONObject(i);
-                                    items[i] = new ObjectItem(i, entry.getJSONObject("im:name")
+                                for (int i = 0; i < json_entries.length(); i++) {
+                                    JSONObject json_entry = json_entries.getJSONObject(i);
+                                    entries[i] = new Entry(i, json_entry.getJSONObject("im:name")
                                         .getString("label"));
                                 }
                             } catch (JSONException e) {
@@ -72,7 +72,7 @@ public class MainActivity extends Activity {
                             }
 
                             CustomArrayAdapter adapter = new CustomArrayAdapter(ma, 
-                                R.layout.list_item, items);
+                                R.layout.list_item, entries);
                             ListView listView = (ListView) findViewById(R.id.list);
 
 
@@ -88,10 +88,10 @@ public class MainActivity extends Activity {
                                     //Toast.makeText(getApplicationContext(), display, Toast.LENGTH_LONG).show();
                                     //String item_id = view.getTag().toString();
                                     //String item_id = ((TextView) view).getTag().toString();
-                                    String item_id = Integer.toString(items[position].itemId);
+                                    String entryId = Integer.toString(entries[position].entryId);
                                     Intent i = new Intent(getApplicationContext(), 
                                         ViewListItem.class);
-                                    i.putExtra("id", item_id);
+                                    i.putExtra("id", entryId);
                                     startActivity(i);
                                 }
                             });
