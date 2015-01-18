@@ -5,7 +5,7 @@ public class Entry {
     public String name;
     //needs images
     public String summary;
-    public String price_amount;
+    public String price_amount; //would be float, but not doing any math with it
     public String price_currency;
     public String content_type_term;
     public String content_type_label;

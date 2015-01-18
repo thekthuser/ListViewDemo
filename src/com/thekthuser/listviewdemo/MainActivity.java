@@ -65,8 +65,47 @@ public class MainActivity extends Activity {
                             try {
                                 for (int i = 0; i < json_entries.length(); i++) {
                                     JSONObject json_entry = json_entries.getJSONObject(i);
-                                    entries[i] = new Entry(i, json_entry.getJSONObject("im:name")
-                                        .getString("label"));
+                                    //entries[i] = new Entry(i, json_entry.getJSONObject("im:name")
+                                     //   .getString("label"));
+                                     entries[i] = new Entry(i, 
+                                         json_entry.getJSONObject("im:name").getString("label"),
+                                         json_entry.getJSONObject("summary").getString("label"),
+                                         json_entry.getJSONObject("im:price").getJSONObject("attributes")
+                                            .getString("amount"),
+                                         json_entry.getJSONObject("im:price").getJSONObject("attributes")
+                                            .getString("currency"),
+                                         json_entry.getJSONObject("im:contentType").getJSONObject("attributes")
+                                            .getString("term"),
+                                         json_entry.getJSONObject("im:contentType").getJSONObject("attributes")
+                                            .getString("label"),
+                                         json_entry.getJSONObject("rights").getString("label"),
+                                         json_entry.getJSONObject("title").getString("label"),
+                                         json_entry.getJSONObject("link").getJSONObject("attributes")
+                                            .getString("rel"),
+                                         json_entry.getJSONObject("link").getJSONObject("attributes")
+                                            .getString("type"),
+                                         json_entry.getJSONObject("link").getJSONObject("attributes")
+                                            .getString("href"),
+                                         json_entry.getJSONObject("id").getString("label"),
+                                         json_entry.getJSONObject("id").getJSONObject("attributes")
+                                             .getString("im:id"),
+                                         json_entry.getJSONObject("id").getJSONObject("attributes")
+                                             .getString("im:bundleId"),
+                                         json_entry.getJSONObject("im:artist").getString("label"),
+                                         json_entry.getJSONObject("im:artist").getJSONObject("attributes")
+                                             .getString("href"),
+                                         json_entry.getJSONObject("category").getJSONObject("attributes")
+                                             .getString("im:id"),
+                                         json_entry.getJSONObject("category").getJSONObject("attributes")
+                                             .getString("term"),
+                                         json_entry.getJSONObject("category").getJSONObject("attributes")
+                                             .getString("scheme"),
+                                         json_entry.getJSONObject("category").getJSONObject("attributes")
+                                             .getString("label"),
+                                         json_entry.getJSONObject("im:releaseDate").getString("label"),
+                                         json_entry.getJSONObject("im:releaseDate").getJSONObject("attributes")
+                                             .getString("label")
+                                    );
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
