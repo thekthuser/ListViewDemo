@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 
 import org.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import com.squareup.okhttp.*;
 import java.io.IOException;
@@ -35,63 +37,80 @@ public class MainActivity extends Activity {
 
         final MainActivity ma = this;
 
+        String url = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topgrossingapplications/sf=143441/limit=25/json";
         Request request = new Request.Builder()
-            .url("http://www.something.com/")
+            .url(url)
             .build();
 
-        client.newCall(request).enqueue(new Callback() {
+            client.newCall(request).enqueue(new Callback() {
             @Override
-            public void onFailure(Request request, IOException throwable) {
-                throwable.printStackTrace();
+            public void onFailure(Request request, IOException e) {
+                e.printStackTrace();
             }
+
             @Override
             public void onResponse(Response response) throws IOException {
                 if (!response.isSuccessful()) throw new IOException("Unexpected code " + response);
-                Log.i("QQQQQQQQQQQQQQQQQQQQQQQQ", response.body().string());
-                final String asdf = "asdf";
+                try {
+                    JSONObject json_response = new JSONObject(response.body().string());
+                    final JSONArray entries = new JSONArray(json_response.getJSONObject("feed")
+                        .getJSONArray("entry").toString());
 
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        final ObjectItem[] items = new ObjectItem[1];
-                        items[0] = new ObjectItem(0, asdf);
-
-                        CustomArrayAdapter adapter = new CustomArrayAdapter(ma, R.layout.list_item,
-                            items);
-                        ListView listView = (ListView) findViewById(R.id.list);
-
-
-                        listView.setAdapter(adapter);
-
-                        listView.setOnItemClickListener(new OnItemClickListener() {
-                            public void onItemClick(AdapterView<?> parent, View view, int position,
-                                long id) {
-                                //String display = ((TextView) view).getText().toString();
-                                //String display = view.getText().toString();
-                                //String display = Integer.toString(position);
-                                //String display = items[position].title;
-                                //Toast.makeText(getApplicationContext(), display, Toast.LENGTH_LONG).show();
-                                //String item_id = view.getTag().toString();
-                                //String item_id = ((TextView) view).getTag().toString();
-                                String item_id = Integer.toString(items[position].itemId);
-                                Intent i = new Intent(getApplicationContext(), ViewListItem.class);
-                                i.putExtra("id", item_id);
-                                startActivity(i);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            final ObjectItem[] items = new ObjectItem[25];
+                            
+                            try {
+                                for (int i = 0; i < entries.length(); i++) {
+                                    JSONObject entry = entries.getJSONObject(i);
+                                    items[i] = new ObjectItem(i, entry.getJSONObject("im:name")
+                                        .getString("label"));
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
                             }
-                        });
 
-                        Button refresh = (Button) findViewById(R.id.refresh);
-                        refresh.setOnClickListener(new OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(getApplicationContext(), "test refresh", 
-                                    Toast.LENGTH_LONG).show();
-                                //finish();
-                                //startActivity(getIntent());
-                            }
-                        });
-                    }
-                });
+                            CustomArrayAdapter adapter = new CustomArrayAdapter(ma, 
+                                R.layout.list_item, items);
+                            ListView listView = (ListView) findViewById(R.id.list);
+
+
+                            listView.setAdapter(adapter);
+
+                            listView.setOnItemClickListener(new OnItemClickListener() {
+                                public void onItemClick(AdapterView<?> parent, View view, 
+                                    int position, long id) {
+                                    //String display = ((TextView) view).getText().toString();
+                                    //String display = view.getText().toString();
+                                    //String display = Integer.toString(position);
+                                    //String display = items[position].title;
+                                    //Toast.makeText(getApplicationContext(), display, Toast.LENGTH_LONG).show();
+                                    //String item_id = view.getTag().toString();
+                                    //String item_id = ((TextView) view).getTag().toString();
+                                    String item_id = Integer.toString(items[position].itemId);
+                                    Intent i = new Intent(getApplicationContext(), 
+                                        ViewListItem.class);
+                                    i.putExtra("id", item_id);
+                                    startActivity(i);
+                                }
+                            });
+
+                            Button refresh = (Button) findViewById(R.id.refresh);
+                            refresh.setOnClickListener(new OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Toast.makeText(getApplicationContext(), "test refresh", 
+                                        Toast.LENGTH_LONG).show();
+                                    //finish();
+                                    //startActivity(getIntent());
+                                }
+                            });
+                        }
+                    });
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
