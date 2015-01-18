@@ -59,7 +59,8 @@ public class MainActivity extends Activity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            final Entry[] entries = new Entry[25];
+                            int num_entries = json_entries.length();
+                            final Entry[] entries = new Entry[num_entries];
                             
                             try {
                                 for (int i = 0; i < json_entries.length(); i++) {
