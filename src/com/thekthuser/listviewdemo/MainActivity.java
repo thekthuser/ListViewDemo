@@ -63,10 +63,13 @@ public class MainActivity extends Activity {
                             final Entry[] entries = new Entry[num_entries];
                             
                             try {
-                                for (int i = 0; i < json_entries.length(); i++) {
+                                for (int i = 0; i < num_entries; i++) {
                                     JSONObject json_entry = json_entries.getJSONObject(i);
-                                    //entries[i] = new Entry(i, json_entry.getJSONObject("im:name")
-                                     //   .getString("label"));
+                                    JSONArray json_images = new JSONArray(json_entry
+                                        .getJSONArray("im:image").toString());
+                                    int num_images = json_images.length();
+                                    EntryImage[] images = new EntryImage[num_images];
+
                                      entries[i] = new Entry(i, 
                                          json_entry.getJSONObject("im:name").getString("label"),
                                          json_entry.getJSONObject("summary").getString("label"),
@@ -107,6 +110,13 @@ public class MainActivity extends Activity {
                                          json_entry.getJSONObject("im:releaseDate")
                                              .getJSONObject("attributes").getString("label")
                                     );
+
+                                     for (int j = 0; j < num_images; j++) {
+                                         JSONObject json_image = json_images.getJSONObject(j);
+                                         images[j] = new EntryImage(j, entries[i].id_id, 
+                                            json_image.getString("label"), 
+                                            json_image.getJSONObject("attributes").getInt("height"));
+                                    }
                                 }
                             } catch (JSONException e) {
                                 e.printStackTrace();
