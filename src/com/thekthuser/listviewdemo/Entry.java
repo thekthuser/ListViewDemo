@@ -15,7 +15,7 @@ public class Entry {
     public String link_type;
     public String link_href;
     public String id_label;
-    public String id_id; //I'm assuming this is a unique id and will use it as such
+    public int id_id; //I'm assuming this is a unique id and will use it as such
     public String id_bundleId;
     public String artist_label;
     public String artist_href;
@@ -27,12 +27,7 @@ public class Entry {
     public String release_date_human;
 
 
-    public Entry(int entryId, String name) {
-        this.entryId = entryId;
-        this.name = name;
-    }
-
-    public Entry(int entryId, String name, String summary, String price_amount, String price_currency, String content_type_term, String content_type_label, String rights, String title, String link_rel, String link_type, String link_href, String id_label, String id_id, String id_bundleId, String artist_label, String artist_href, String category_id, String category_term, String category_scheme, String category_label, String release_date, String release_date_human) {
+    public Entry(int entryId, String name, String summary, String price_amount, String price_currency, String content_type_term, String content_type_label, String rights, String title, String link_rel, String link_type, String link_href, String id_label, int id_id, String id_bundleId, String artist_label, String artist_href, String category_id, String category_term, String category_scheme, String category_label, String release_date, String release_date_human) {
         this.entryId = entryId;
         this.name = name;
         this.summary = summary;

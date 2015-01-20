@@ -88,7 +88,7 @@ public class MainActivity extends Activity {
                                             .getString("href"),
                                          json_entry.getJSONObject("id").getString("label"),
                                          json_entry.getJSONObject("id").getJSONObject("attributes")
-                                             .getString("im:id"),
+                                             .getInt("im:id"),
                                          json_entry.getJSONObject("id").getJSONObject("attributes")
                                              .getString("im:bundleId"),
                                          json_entry.getJSONObject("im:artist").getString("label"),
