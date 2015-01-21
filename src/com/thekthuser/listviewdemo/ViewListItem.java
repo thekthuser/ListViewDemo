@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.ImageView;
+
+import android.widget.Toast;
 
 public class ViewListItem extends Activity {
     @Override
@@ -11,11 +14,21 @@ public class ViewListItem extends Activity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.view_list_item);
 
-        TextView id = (TextView) findViewById(R.id.display_id);
+        //TextView id = (TextView) findViewById(R.id.display_id);
+        ImageView image = (ImageView) findViewById(R.id.view_list_image);
 
         Intent i = getIntent();
-        String sId = i.getStringExtra("id");
+        //String sId = i.getStringExtra("id");
+        //String[] image_url = i.getStringArrayExtra("images");
+        String image_url = i.getStringExtra("image_url");
+        //String asdf = image_url[0].url;
+        String asdf = i.getStringExtra("name");
+        Toast.makeText(getApplicationContext(), asdf, Toast.LENGTH_LONG).show();
 
-        id.setText(sId);
+
+        new ImageDownloader(image).execute(image_url);
+
+
+        //id.setText(sId);
     }
 }

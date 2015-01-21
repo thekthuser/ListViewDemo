@@ -141,10 +141,14 @@ public class MainActivity extends Activity {
                                     //Toast.makeText(getApplicationContext(), display, Toast.LENGTH_LONG).show();
                                     //String item_id = view.getTag().toString();
                                     //String item_id = ((TextView) view).getTag().toString();
-                                    String entryId = Integer.toString(entries[position].entryId);
+                                    //String entryId = Integer.toString(entries[position].entryId);
+                                    String name = entries[position].name;
+                                    String image_url = entries[position].images[2].url;
                                     Intent i = new Intent(getApplicationContext(), 
                                         ViewListItem.class);
-                                    i.putExtra("id", entryId);
+                                    //i.putExtra("id", entryId);
+                                    i.putExtra("name", name);
+                                    i.putExtra("image_url", image_url);
                                     startActivity(i);
                                 }
                             });

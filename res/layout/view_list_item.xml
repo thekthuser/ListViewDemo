@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <TextView
+    <ImageView
+        android:id="@+id/view_list_image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/display_id"
+        android:layout_gravity="center"
     />
 </LinearLayout>
 
