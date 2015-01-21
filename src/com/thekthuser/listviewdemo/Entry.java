@@ -26,8 +26,10 @@ public class Entry {
     public String release_date;
     public String release_date_human;
 
+    public EntryImage[] images;
 
-    public Entry(int entryId, String name, String summary, String price_amount, String price_currency, String content_type_term, String content_type_label, String rights, String title, String link_rel, String link_type, String link_href, String id_label, int id_id, String id_bundleId, String artist_label, String artist_href, String category_id, String category_term, String category_scheme, String category_label, String release_date, String release_date_human) {
+
+    public Entry(int entryId, String name, String summary, String price_amount, String price_currency, String content_type_term, String content_type_label, String rights, String title, String link_rel, String link_type, String link_href, String id_label, int id_id, String id_bundleId, String artist_label, String artist_href, String category_id, String category_term, String category_scheme, String category_label, String release_date, String release_date_human, EntryImage[] images) {
         this.entryId = entryId;
         this.name = name;
         this.summary = summary;
@@ -51,6 +53,7 @@ public class Entry {
         this.category_label = category_label;
         this.release_date = release_date;
         this.release_date_human = release_date_human;
+        this.images = images;
 
     }
 
