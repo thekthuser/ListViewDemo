@@ -1,5 +1,9 @@
 package com.thekthuser.listviewdemo;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+//public class Entry implements Parcelable {
 public class Entry {
     public int entryId;
     public String name;
@@ -56,5 +60,24 @@ public class Entry {
         this.images = images;
 
     }
+
+    /*
+    public static final Parcelable.Creator<Entry> CREATOR = new Creator<Entry>() {
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+        @Override
+        public void writeToParcel(Parcel out, int flags) {
+            out.writeInt(entryId)u
+
+            
+            Entry nEntry = new Entry
+        }
+        public Entry[] newArray(int size) {
+            return new Entry[size];
+        }
+    };
+    */
 
 }

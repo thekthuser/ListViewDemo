@@ -149,6 +149,11 @@ public class MainActivity extends Activity {
                                     //i.putExtra("id", entryId);
                                     i.putExtra("name", name);
                                     i.putExtra("image_url", image_url);
+
+
+                                    EntryImage test = entries[position].images[2];
+                                    i.putExtra("com.thekthuser.listviewdemo.EntryImage", test);
+
                                     startActivity(i);
                                 }
                             });

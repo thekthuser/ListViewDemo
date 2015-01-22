@@ -17,13 +17,17 @@ public class ViewListItem extends Activity {
         //TextView id = (TextView) findViewById(R.id.display_id);
         ImageView image = (ImageView) findViewById(R.id.view_list_image);
 
-        Intent i = getIntent();
+        Bundle b = getIntent().getExtras();
         //String sId = i.getStringExtra("id");
         //String[] image_url = i.getStringArrayExtra("images");
-        String image_url = i.getStringExtra("image_url");
+        //String image_url = i.getStringExtra("image_url");
         //String asdf = image_url[0].url;
-        String asdf = i.getStringExtra("name");
-        Toast.makeText(getApplicationContext(), asdf, Toast.LENGTH_LONG).show();
+        //String asdf = i.getStringExtra("name");
+        //Toast.makeText(getApplicationContext(), asdf, Toast.LENGTH_LONG).show();
+
+
+        EntryImage asdf = b.getParcelable("com.thekthuser.listviewdemo.EntryImage");
+        String image_url = asdf.url;
 
 
         new ImageDownloader(image).execute(image_url);
