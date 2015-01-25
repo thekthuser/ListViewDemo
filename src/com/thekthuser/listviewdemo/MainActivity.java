@@ -134,25 +134,12 @@ public class MainActivity extends Activity {
                             listView.setOnItemClickListener(new OnItemClickListener() {
                                 public void onItemClick(AdapterView<?> parent, View view, 
                                     int position, long id) {
-                                    //String display = ((TextView) view).getText().toString();
-                                    //String display = view.getText().toString();
-                                    //String display = Integer.toString(position);
-                                    //String display = items[position].title;
-                                    //Toast.makeText(getApplicationContext(), display, Toast.LENGTH_LONG).show();
-                                    //String item_id = view.getTag().toString();
-                                    //String item_id = ((TextView) view).getTag().toString();
-                                    //String entryId = Integer.toString(entries[position].entryId);
-                                    String name = entries[position].name;
-                                    String image_url = entries[position].images[2].url;
+
                                     Intent i = new Intent(getApplicationContext(), 
                                         ViewListItem.class);
-                                    //i.putExtra("id", entryId);
-                                    i.putExtra("name", name);
-                                    i.putExtra("image_url", image_url);
 
-
-                                    EntryImage test = entries[position].images[2];
-                                    i.putExtra("com.thekthuser.listviewdemo.EntryImage", test);
+                                    Entry entry = entries[position];
+                                    i.putExtra("Entry", entry);
 
                                     startActivity(i);
                                 }

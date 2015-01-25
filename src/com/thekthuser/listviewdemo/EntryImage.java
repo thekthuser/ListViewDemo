@@ -42,7 +42,7 @@ public class EntryImage implements Parcelable {
         height = in.readInt();
     }
 
-    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+    public static final Parcelable.Creator<EntryImage> CREATOR = new Parcelable.Creator<EntryImage>() {
         public EntryImage createFromParcel(Parcel in) {
             return new EntryImage(in);
         }

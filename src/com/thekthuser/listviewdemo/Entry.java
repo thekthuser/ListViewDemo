@@ -2,12 +2,12 @@ package com.thekthuser.listviewdemo;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import java.util.Arrays;
+import java.util.ArrayList;
 
-//public class Entry implements Parcelable {
-public class Entry {
+public class Entry implements Parcelable {
     public int entryId;
     public String name;
-    //needs images
     public String summary;
     public String price_amount; //would be float, but not doing any math with it
     public String price_currency;
@@ -29,7 +29,6 @@ public class Entry {
     public String category_label;
     public String release_date;
     public String release_date_human;
-
     public EntryImage[] images;
 
 
@@ -61,23 +60,77 @@ public class Entry {
 
     }
 
-    /*
-    public static final Parcelable.Creator<Entry> CREATOR = new Creator<Entry>() {
-        @Override
-        public int describeContents() {
-            return 0;
-        }
-        @Override
-        public void writeToParcel(Parcel out, int flags) {
-            out.writeInt(entryId)u
 
-            
-            Entry nEntry = new Entry
+    public Entry(Parcel in) {
+        readFromParcel(in);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeInt(entryId);
+        parcel.writeString(name);
+        parcel.writeString(summary);
+        parcel.writeString(price_amount);
+        parcel.writeString(price_currency);
+        parcel.writeString(content_type_term);
+        parcel.writeString(content_type_label);
+        parcel.writeString(rights);
+        parcel.writeString(title);
+        parcel.writeString(link_rel);
+        parcel.writeString(link_type);
+        parcel.writeString(link_href);
+        parcel.writeString(id_label);
+        parcel.writeInt(id_id);
+        parcel.writeString(id_bundleId);
+        parcel.writeString(artist_label);
+        parcel.writeString(artist_href);
+        parcel.writeString(category_id);
+        parcel.writeString(category_term);
+        parcel.writeString(category_scheme);
+        parcel.writeString(category_label);
+        parcel.writeString(release_date);
+        parcel.writeString(release_date_human);
+        parcel.writeParcelableArray(images, flags);
+    }
+    private void readFromParcel(Parcel in) {
+        entryId = in.readInt();
+        name = in.readString();
+        summary = in.readString();
+        price_amount = in.readString();
+        price_currency = in.readString();
+        content_type_term = in.readString();
+        content_type_label = in.readString();
+        rights = in.readString();
+        title = in.readString();
+        link_rel = in.readString();
+        link_type = in.readString();
+        link_href = in.readString();
+        id_label = in.readString();
+        id_id = in.readInt();
+        id_bundleId = in.readString();
+        artist_label = in.readString();
+        artist_href = in.readString();
+        category_id = in.readString();
+        category_term = in.readString();
+        category_scheme = in.readString();
+        category_label = in.readString();
+        release_date = in.readString();
+        release_date_human = in.readString();
+        Parcelable[] parcelableArray = in.readParcelableArray(EntryImage.class.getClassLoader());
+        images = null;
+        if (parcelableArray != null) {
+            images = Arrays.copyOf(parcelableArray, parcelableArray.length, EntryImage[].class);
+        }
+    }
+    public static final Parcelable.Creator<Entry> CREATOR = new Parcelable.Creator<Entry>() {
+        public Entry createFromParcel(Parcel in) {
+            return new Entry(in);
         }
         public Entry[] newArray(int size) {
             return new Entry[size];
         }
     };
-    */
-
 }
