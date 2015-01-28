@@ -33,13 +33,14 @@ public class ViewListItem extends Activity {
         date.setText("Released on " + entry.release_date_human);
         new ImageDownloader(image).execute(image_url);
 
+        final String subject = "Check out " + entry.name;
+        final String body = entry.summary;
+
 
         share.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String body = "Test share body text.";
-                String subject = "Share Subject.";
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
