@@ -2,6 +2,7 @@ package com.thekthuser.listviewdemo;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -18,13 +19,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_HEIGHT = "height";
 
 
-    public static final String ENTTRY_IMAGES_CREATE = "CREATE TABLE "
+    public static final String ENTRY_IMAGES_CREATE = "CREATE TABLE "
         + TABLE_ENTRY_IMAGES + "("
         + COLUMN_ID + " integer primary key autoincrement, "
         + COLUMN_IMAGE_ID + " integer, "
-        + COLUMN_ENTRY_ID + " integer, "
+        + COLUMN_ENTRYID_ID + " integer, "
         + COLUMN_URL + " text, "
         + COLUMN_HEIGHT + " integer);";
+
+
+    public DatabaseHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
