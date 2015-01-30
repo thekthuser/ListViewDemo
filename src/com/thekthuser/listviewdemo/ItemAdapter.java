@@ -64,6 +64,30 @@ public class ItemAdapter {
         long rowId;
     }
 
-    //public boolean isEntrySaved(
+    public boolean isEntrySaved(int id_id) {
+        String projection[] = {
+            DatabaseHelper.COLUMN_ID_ID
+        };
+        String selection = DatabaseHelper.COLUMN_ID_ID + " = ?";
+        String sId = Integer.toString(id_id);
+        String[] selectionArgs = {
+            sId
+        };
+
+        Cursor cursor = dbr.query(
+            DatabaseHelper.TABLE_ENTRIES,
+            projection,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            null
+        );
+        if (cursor.getCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 }
