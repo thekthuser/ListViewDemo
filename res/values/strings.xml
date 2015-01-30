@@ -3,4 +3,6 @@
     <string name="app_name">List View Demo</string>
     <string name="refresh">Refresh</string>
     <string name="share">Share</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
 </resources>

@@ -70,6 +70,12 @@ android:fillViewport="true"
         <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/save"
+        android:id="@+id/save"
+        />
+        <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="@string/share"
         android:id="@+id/share"
         />
