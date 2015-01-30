@@ -72,12 +72,13 @@ public class MainActivity extends Activity {
 
                                      for (int j = 0; j < num_images; j++) {
                                          JSONObject json_image = json_images.getJSONObject(j);
-                                         images[j] = new EntryImage(j, Integer.parseInt(json_entry.getJSONObject("id").getJSONObject("attributes").getString("im:id")),
+                                         //fix this hard coded id later
+                                         images[j] = new EntryImage(-1, j, Integer.parseInt(json_entry.getJSONObject("id").getJSONObject("attributes").getString("im:id")),
                                             json_image.getString("label"), 
                                             json_image.getJSONObject("attributes").getInt("height"));
                                     }
 
-                                     entries[i] = new Entry(i, 
+                                     entries[i] = new Entry(-1, i, 
                                          json_entry.getJSONObject("im:name").getString("label"),
                                          json_entry.getJSONObject("summary").getString("label"),
                                          json_entry.getJSONObject("im:price")
