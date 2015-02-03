@@ -65,6 +65,9 @@ public class ViewListItem extends Activity {
                 if (!iAdapter.isEntrySaved(entry.id_id)) {
                     iAdapter.addEntry(entry);
                     save.setText(R.string.delete);
+                } else {
+                    iAdapter.removeEntry(entry);
+                    save.setText(R.string.save);
                 }
                 iAdapter.close();
             }

@@ -72,6 +72,30 @@ public class ItemAdapter {
         long rowId;
     }
 
+    public void removeEntry(Entry entry) {
+        String selection = DatabaseHelper.COLUMN_ID_ID + " = ?";
+        String[] selectionArgs = {
+            Integer.toString(entry.id_id)
+        };
+
+        db.beginTransaction();
+        db.delete(DatabaseHelper.TABLE_ENTRIES, selection, selectionArgs);
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+
+    public void removeEntryImages(EntryImage image) {
+        String selection = DatabaseHelper.COLUMN_ENTRYID_ID + " = ?";
+        String[] selectionArgs = {
+            Integer.toString(image.entryid_id)
+        };
+
+        db.beginTransaction();
+        db.delete(DatabaseHelper.TABLE_ENTRY_IMAGES, selection, selectionArgs);
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+
     public boolean isEntrySaved(int id_id) {
         String projection[] = {
             DatabaseHelper.COLUMN_ID_ID
