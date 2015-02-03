@@ -6,6 +6,8 @@ import android.database.SQLException;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import android.util.Log;
+
 public class ItemAdapter {
 
     private Context context;
@@ -53,6 +55,12 @@ public class ItemAdapter {
         cValues.put(DatabaseHelper.COLUMN_CATEGORY_LABEL, entry.category_label);
         cValues.put(DatabaseHelper.COLUMN_RELEASE_DATE, entry.release_date);
         cValues.put(DatabaseHelper.COLUMN_RELEASE_DATE_HUMAN, entry.release_date_human);
+        //if (isEntrySaved(entry.id_id)) {
+            db.beginTransaction();
+            db.insert(DatabaseHelper.TABLE_ENTRIES, null, cValues);
+            db.setTransactionSuccessful();
+            db.endTransaction();
+        //}
     }
 
     public void addEntryImage(EntryImage image) {
@@ -74,6 +82,7 @@ public class ItemAdapter {
             sId
         };
 
+        dbr.beginTransaction();
         Cursor cursor = dbr.query(
             DatabaseHelper.TABLE_ENTRIES,
             projection,
@@ -83,6 +92,9 @@ public class ItemAdapter {
             null,
             null
         );
+        dbr.setTransactionSuccessful();
+        dbr.endTransaction();
+
         if (cursor.getCount() > 0) {
             return true;
         } else {

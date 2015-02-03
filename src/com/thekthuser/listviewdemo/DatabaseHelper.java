@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "viewlistdemo.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
 
     public static final String TABLE_ENTRIES = "entries";
     public static final String TABLE_ENTRY_IMAGES = "entry_images";
@@ -44,7 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_HEIGHT = "height";
 
 
-    public static final String ENTRIES_CREATE = "CREATE TABLE"
+    public static final String ENTRIES_CREATE = "CREATE TABLE "
         + TABLE_ENTRIES + "("
         + COLUMN_ID + " integer primary key autoincrement, "
         + COLUMN_ENTRY_ID + " integer, "
@@ -86,14 +86,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.beginTransaction();
         db.execSQL(ENTRIES_CREATE);
         db.execSQL(ENTRY_IMAGES_CREATE);
+        db.setTransactionSuccessful();
+        db.endTransaction();
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.beginTransaction();
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENTRIES);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ENTRY_IMAGES);
+        db.setTransactionSuccessful();
+        db.endTransaction();
         onCreate(db);
     }
 

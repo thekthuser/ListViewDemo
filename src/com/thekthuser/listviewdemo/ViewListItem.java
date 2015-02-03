@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
+import android.widget.Toast;
+
+import android.util.Log;
 
 public class ViewListItem extends Activity {
     @Override
@@ -20,12 +23,20 @@ public class ViewListItem extends Activity {
         TextView price = (TextView) findViewById(R.id.display_price);
         TextView date = (TextView) findViewById(R.id.display_date);
         Button share = (Button) findViewById(R.id.share);
+        final Button save = (Button) findViewById(R.id.save);
         ImageView image = (ImageView) findViewById(R.id.view_list_image);
 
         Bundle b = getIntent().getExtras();
-        Entry entry = b.getParcelable("Entry");
+        final Entry entry = b.getParcelable("Entry");
         String image_url = entry.images[2].url; //assuming the third image exists and is largest
 
+
+        ItemAdapter iAdapter = new ItemAdapter(getApplicationContext());
+        iAdapter.open();
+        if (iAdapter.isEntrySaved(entry.id_id)) {
+            save.setText(R.string.delete);
+        }
+        iAdapter.close();
 
         title.setText(entry.title);
         summary.setText(entry.summary);
@@ -44,6 +55,18 @@ public class ViewListItem extends Activity {
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
+            }
+        });
+
+        save.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ItemAdapter iAdapter = new ItemAdapter(getApplicationContext());
+                iAdapter.open();
+                if (!iAdapter.isEntrySaved(entry.id_id)) {
+                    iAdapter.addEntry(entry);
+                    save.setText(R.string.delete);
+                }
+                iAdapter.close();
             }
         });
     }
