@@ -55,12 +55,15 @@ public class ItemAdapter {
         cValues.put(DatabaseHelper.COLUMN_CATEGORY_LABEL, entry.category_label);
         cValues.put(DatabaseHelper.COLUMN_RELEASE_DATE, entry.release_date);
         cValues.put(DatabaseHelper.COLUMN_RELEASE_DATE_HUMAN, entry.release_date_human);
-        //if (isEntrySaved(entry.id_id)) {
-            db.beginTransaction();
-            db.insert(DatabaseHelper.TABLE_ENTRIES, null, cValues);
-            db.setTransactionSuccessful();
-            db.endTransaction();
-        //}
+
+        db.beginTransaction();
+        db.insert(DatabaseHelper.TABLE_ENTRIES, null, cValues);
+        db.setTransactionSuccessful();
+        db.endTransaction();
+
+        for (int i = 0; i < entry.images.length; i++) {
+            addEntryImage(entry.images[i]);
+        }
     }
 
     public void addEntryImage(EntryImage image) {
@@ -69,7 +72,11 @@ public class ItemAdapter {
         cValues.put(DatabaseHelper.COLUMN_ENTRYID_ID, image.entryid_id);
         cValues.put(DatabaseHelper.COLUMN_URL, image.url);
         cValues.put(DatabaseHelper.COLUMN_HEIGHT, image.height);
-        long rowId;
+
+        db.beginTransaction();
+        db.insert(DatabaseHelper.TABLE_ENTRY_IMAGES, null, cValues);
+        db.setTransactionSuccessful();
+        db.endTransaction();
     }
 
     public void removeEntry(Entry entry) {
