@@ -11,15 +11,25 @@ import android.content.Intent;
 import android.widget.Toast;
 import android.app.ActionBar;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.content.Intent;
+
 import android.util.Log;
 
 public class ViewListItem extends BaseActivity {
+
+    private MenuHandler mHandler;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.view_list_item);
         ActionBar actionBar = getActionBar();
         actionBar.setSubtitle(R.string.view_list_item);
+
+        mHandler = new MenuHandler(this);
 
         TextView title = (TextView) findViewById(R.id.display_title);
         TextView summary = (TextView) findViewById(R.id.display_summary);
@@ -76,4 +86,26 @@ public class ViewListItem extends BaseActivity {
             }
         });
     }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.view_list_item, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                Toast.makeText(getApplicationContext(), "clicked share", Toast.LENGTH_LONG).show();
+                //Intent intent = new Intent(activity, MainActivity.class);
+                //activity.startActivity(intent);
+                return true;
+            default:
+                return mHandler.onOptionsItemSelected(item);
+        }
+    }
+
 }
