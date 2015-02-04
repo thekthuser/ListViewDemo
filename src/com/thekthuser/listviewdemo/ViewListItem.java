@@ -13,7 +13,7 @@ import android.app.ActionBar;
 
 import android.util.Log;
 
-public class ViewListItem extends Activity {
+public class ViewListItem extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

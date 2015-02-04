@@ -25,7 +25,7 @@ import android.util.Log;
 
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+public class MainActivity extends BaseActivity {
 
     private final OkHttpClient client = new OkHttpClient();
 
