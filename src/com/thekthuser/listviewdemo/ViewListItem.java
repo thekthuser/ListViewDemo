@@ -21,6 +21,8 @@ import android.util.Log;
 public class ViewListItem extends BaseActivity {
 
     private MenuHandler mHandler;
+    private String subject;
+    private String body;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,14 +30,12 @@ public class ViewListItem extends BaseActivity {
         this.setContentView(R.layout.view_list_item);
         ActionBar actionBar = getActionBar();
         actionBar.setSubtitle(R.string.view_list_item);
-
         mHandler = new MenuHandler(this);
 
         TextView title = (TextView) findViewById(R.id.display_title);
         TextView summary = (TextView) findViewById(R.id.display_summary);
         TextView price = (TextView) findViewById(R.id.display_price);
         TextView date = (TextView) findViewById(R.id.display_date);
-        Button share = (Button) findViewById(R.id.share);
         final Button save = (Button) findViewById(R.id.save);
         ImageView image = (ImageView) findViewById(R.id.view_list_image);
 
@@ -57,19 +57,9 @@ public class ViewListItem extends BaseActivity {
         date.setText("Released on " + entry.release_date_human);
         new ImageDownloader(image).execute(image_url);
 
-        final String subject = "Check out " + entry.name;
-        final String body = entry.summary;
+        subject = "Check out " + entry.name;
+        body = entry.summary;
 
-
-        share.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
-                sharingIntent.setType("text/plain");
-                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
-                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
-                startActivity(Intent.createChooser(sharingIntent, "Share via"));
-            }
-        });
 
         save.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -99,9 +89,14 @@ public class ViewListItem extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_share:
-                Toast.makeText(getApplicationContext(), "clicked share", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "clicked share", Toast.LENGTH_LONG).show();
                 //Intent intent = new Intent(activity, MainActivity.class);
                 //activity.startActivity(intent);
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, body);
+                startActivity(Intent.createChooser(sharingIntent, "Share via"));
                 return true;
             default:
                 return mHandler.onOptionsItemSelected(item);
