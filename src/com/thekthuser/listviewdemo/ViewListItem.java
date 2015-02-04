@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
 import android.widget.Toast;
+import android.app.ActionBar;
 
 import android.util.Log;
 
@@ -17,6 +18,8 @@ public class ViewListItem extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.view_list_item);
+        ActionBar actionBar = getActionBar();
+        actionBar.setSubtitle(R.string.view_list_item);
 
         TextView title = (TextView) findViewById(R.id.display_title);
         TextView summary = (TextView) findViewById(R.id.display_summary);
