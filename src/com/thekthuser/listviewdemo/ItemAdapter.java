@@ -89,12 +89,14 @@ public class ItemAdapter {
         db.delete(DatabaseHelper.TABLE_ENTRIES, selection, selectionArgs);
         db.setTransactionSuccessful();
         db.endTransaction();
+
+        removeEntryImages(Integer.toString(entry.images[0].entryid_id));
     }
 
-    public void removeEntryImages(EntryImage image) {
+    public void removeEntryImages(String entryid_id) {
         String selection = DatabaseHelper.COLUMN_ENTRYID_ID + " = ?";
         String[] selectionArgs = {
-            Integer.toString(image.entryid_id)
+            entryid_id
         };
 
         db.beginTransaction();
