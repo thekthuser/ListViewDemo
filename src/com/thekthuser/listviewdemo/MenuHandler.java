@@ -36,7 +36,7 @@ public class MenuHandler {
 
     public void test() {
         Toast.makeText(activity.getApplicationContext(), "clicked action item", Toast.LENGTH_LONG).show();
-        //Intent intent = new Intent(activity, MainActivity.class);
+        //Intent intent = new Intent(activity, ViewList.class);
         //activity.startActivity(intent);
     }
 }

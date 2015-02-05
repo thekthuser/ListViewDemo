@@ -25,7 +25,7 @@ import android.util.Log;
 
 import android.widget.Toast;
 
-public class MainActivity extends BaseActivity {
+public class ViewList extends BaseActivity {
 
     private final OkHttpClient client = new OkHttpClient();
 
@@ -35,7 +35,7 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        final MainActivity ma = this;
+        final ViewList vl = this;
 
         String url = "http://ax.itunes.apple.com/WebObjects/MZStoreServices.woa/ws/RSS/topgrossingapplications/sf=143441/limit=25/json";
         Request request = new Request.Builder()
@@ -125,7 +125,7 @@ public class MainActivity extends BaseActivity {
                                 e.printStackTrace();
                             }
 
-                            CustomArrayAdapter adapter = new CustomArrayAdapter(ma, 
+                            CustomArrayAdapter adapter = new CustomArrayAdapter(vl, 
                                 R.layout.list_item, entries);
                             ListView listView = (ListView) findViewById(R.id.list);
 
