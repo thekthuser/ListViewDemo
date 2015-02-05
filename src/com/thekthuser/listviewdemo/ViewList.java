@@ -33,7 +33,7 @@ public class ViewList extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.view_list);
 
         final ViewList vl = this;
 
