@@ -17,6 +17,9 @@
         <activity android:name="ViewListItem"
                     android:parentActivityName="ViewList">
         </activity>
+        <activity android:name="ViewSavedList"
+                    android:parentActivityName="ViewList">
+        </activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
