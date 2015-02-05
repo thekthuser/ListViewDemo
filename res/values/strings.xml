@@ -7,4 +7,6 @@
     <string name="delete">Delete</string>
 
     <string name="view_list_item">View List Item</string>
+    <string name="view_list">View List</string>
+    <string name="view_saved_list">View Saved List</string>
 </resources>

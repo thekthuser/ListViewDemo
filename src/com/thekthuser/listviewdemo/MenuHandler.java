@@ -5,10 +5,8 @@ import android.view.MenuItem;
 import android.view.MenuInflater;
 import android.content.Intent;
 import android.app.Activity;
-
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 public class MenuHandler {
     private Activity activity;
@@ -27,16 +25,15 @@ public class MenuHandler {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_test:
-                test();
+                viewSavedList();
                 return true;
             default:
                 return activity.onOptionsItemSelected(item);
         }
     }
 
-    public void test() {
-        Toast.makeText(activity.getApplicationContext(), "clicked action item", Toast.LENGTH_LONG).show();
-        //Intent intent = new Intent(activity, ViewList.class);
-        //activity.startActivity(intent);
+    public void viewSavedList() {
+        Intent intent = new Intent(activity, ViewSavedList.class);
+        activity.startActivity(intent);
     }
 }
