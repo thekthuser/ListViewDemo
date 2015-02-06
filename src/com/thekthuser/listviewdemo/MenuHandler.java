@@ -15,6 +15,9 @@ public class MenuHandler {
         this.activity = activity;
     }
 
+    public Activity getActivity() {
+        return activity;
+    }
 
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = activity.getMenuInflater();
@@ -24,7 +27,7 @@ public class MenuHandler {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_test:
+            case R.id.action_view_saved_list:
                 viewSavedList();
                 return true;
             default:
