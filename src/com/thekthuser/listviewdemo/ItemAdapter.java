@@ -105,6 +105,68 @@ public class ItemAdapter {
         db.endTransaction();
     }
 
+    public Entry[] getEntries() {
+        String[] projection = {
+            DatabaseHelper.COLUMN_ID,
+            DatabaseHelper.COLUMN_ENTRY_ID,
+            DatabaseHelper.COLUMN_NAME,
+            DatabaseHelper.COLUMN_SUMMARY,
+            DatabaseHelper.COLUMN_PRICE_AMOUNT,
+            DatabaseHelper.COLUMN_PRICE_CURRENCY,
+            DatabaseHelper.COLUMN_CONTENT_TYPE_TERM,
+            DatabaseHelper.COLUMN_CONTENT_TYPE_LABEL,
+            DatabaseHelper.COLUMN_RIGHTS,
+            DatabaseHelper.COLUMN_TITLE,
+            DatabaseHelper.COLUMN_LINK_REL,
+            DatabaseHelper.COLUMN_LINK_TYPE,
+            DatabaseHelper.COLUMN_LINK_HREF,
+            DatabaseHelper.COLUMN_ID_LABEL,
+            DatabaseHelper.COLUMN_ID_ID,
+            DatabaseHelper.COLUMN_ID_BUNDLEID,
+            DatabaseHelper.COLUMN_ARTIST_LABEL,
+            DatabaseHelper.COLUMN_ARTIST_HREF,
+            DatabaseHelper.COLUMN_CATEGORY_ID,
+            DatabaseHelper.COLUMN_CATEGORY_TERM,
+            DatabaseHelper.COLUMN_CATEGORY_SCHEME,
+            DatabaseHelper.COLUMN_CATEGORY_LABEL,
+            DatabaseHelper.COLUMN_RELEASE_DATE,
+            DatabaseHelper.COLUMN_RELEASE_DATE_HUMAN
+        };
+
+        String order = DatabaseHelper.COLUMN_ID + " ASC";
+
+        dbr.beginTransaction();
+        Cursor cursor = dbr.query(
+            DatabaseHelper.TABLE_ENTRIES,
+            projection,
+            null,
+            null,
+            null,
+            null,
+            order
+        );
+        dbr.setTransactionSuccessful();
+        dbr.endTransaction();
+
+        Entry[] entries = new Entry[cursor.getCount()];
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            String id_id = cursor.getString(14);
+            EntryImage[] entryImages = getEntryImages(id_id);
+            Entry entry = new Entry(cursor.getInt(0), cursor.getInt(1), cursor.getString(2), 
+                    cursor.getString(3), cursor.getString(4), cursor.getString(5), 
+                    cursor.getString(6), cursor.getString(7), cursor.getString(8), 
+                    cursor.getString(9), cursor.getString(10), cursor.getString(11), 
+                    cursor.getString(12), cursor.getString(13), cursor.getInt(14), 
+                    cursor.getString(15), cursor.getString(16), cursor.getString(17), 
+                    cursor.getString(18), cursor.getString(19), cursor.getString(20), 
+                    cursor.getString(21), cursor.getString(22), cursor.getString(23), entryImages);
+            entries[i] = entry;
+            cursor.moveToNext();
+        }
+        return entries;
+    }
+
     public EntryImage[] getEntryImages(String entryid_id) {
         String[] projection = {
             DatabaseHelper.COLUMN_ID,
