@@ -89,9 +89,6 @@ public class ViewListItem extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_share:
-                //Toast.makeText(getApplicationContext(), "clicked share", Toast.LENGTH_LONG).show();
-                //Intent intent = new Intent(activity, ViewList.class);
-                //activity.startActivity(intent);
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, subject);

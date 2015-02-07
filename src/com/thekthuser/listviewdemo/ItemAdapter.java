@@ -105,6 +105,44 @@ public class ItemAdapter {
         db.endTransaction();
     }
 
+    public EntryImage[] getEntryImages(String entryid_id) {
+        String[] projection = {
+            DatabaseHelper.COLUMN_ID,
+            DatabaseHelper.COLUMN_IMAGE_ID,
+            DatabaseHelper.COLUMN_ENTRYID_ID,
+            DatabaseHelper.COLUMN_URL,
+            DatabaseHelper.COLUMN_HEIGHT
+        };
+        String selection = DatabaseHelper.COLUMN_ENTRYID_ID + " = ?";
+        String[] selectionArgs = {
+            entryid_id
+        };
+        String order = DatabaseHelper.COLUMN_IMAGE_ID + " ASC";
+
+        dbr.beginTransaction();
+        Cursor cursor = dbr.query(
+            DatabaseHelper.TABLE_ENTRY_IMAGES,
+            projection,
+            selection,
+            selectionArgs,
+            null,
+            null,
+            order
+        );
+        dbr.setTransactionSuccessful();
+        dbr.endTransaction();
+
+        EntryImage[]  entryImages = new EntryImage[cursor.getCount()];
+        cursor.moveToFirst();
+        for (int i = 0; i < cursor.getCount(); i++) {
+            EntryImage entryImage = new EntryImage(cursor.getInt(0), cursor.getInt(1), 
+                cursor.getInt(2), cursor.getString(3), cursor.getInt(4));
+            entryImages[i] = entryImage;
+            cursor.moveToNext();
+        }
+        return entryImages;
+    }
+
     public boolean isEntrySaved(int id_id) {
         String projection[] = {
             DatabaseHelper.COLUMN_ID_ID
