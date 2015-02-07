@@ -36,6 +36,32 @@ public class ViewSavedList extends BaseActivity {
         actionBar.setSubtitle(R.string.view_saved_list);
         mHandler = new MenuHandler(this);
         activity = mHandler.getActivity();
+
+        final ViewSavedList vsl = this;
+
+        ItemAdapter iAdapter = new ItemAdapter(getApplicationContext());
+        iAdapter.open();
+        final Entry[] entries = iAdapter.getEntries();
+        iAdapter.close();
+
+        CustomArrayAdapter adapter = new CustomArrayAdapter(vsl, R.layout.list_item, entries);
+        ListView listView = (ListView) findViewById(R.id.saved_list);
+        listView.setAdapter(adapter);
+
+
+        listView.setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view, 
+                int position, long id) {
+
+                Intent i = new Intent(getApplicationContext(), 
+                    ViewListItem.class);
+
+                Entry entry = entries[position];
+                i.putExtra("Entry", entry);
+
+                startActivity(i);
+            }
+        });
     }
 
     @Override
