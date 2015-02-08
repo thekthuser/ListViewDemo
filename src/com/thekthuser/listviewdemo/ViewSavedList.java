@@ -39,6 +39,8 @@ public class ViewSavedList extends BaseActivity {
         setContentView(R.layout.view_saved_list);
         ActionBar actionBar = getActionBar();
         actionBar.setSubtitle(R.string.view_saved_list);
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(false);
         mHandler = new MenuHandler(this);
         activity = mHandler.getActivity();
 

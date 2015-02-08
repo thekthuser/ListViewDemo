@@ -30,6 +30,8 @@ public class ViewListItem extends BaseActivity {
         this.setContentView(R.layout.view_list_item);
         ActionBar actionBar = getActionBar();
         actionBar.setSubtitle(R.string.view_list_item);
+        actionBar.setHomeButtonEnabled(false);
+        actionBar.setDisplayHomeAsUpEnabled(false);
         mHandler = new MenuHandler(this);
 
         TextView title = (TextView) findViewById(R.id.display_title);
