@@ -27,7 +27,12 @@ public class ViewSavedList extends BaseActivity {
     private MenuHandler mHandler;
     private Activity activity;
 
-    /** Called when the activity is first created. */
+    @Override
+    public void onResume() {
+        super.onResume();
+        onCreate(new Bundle());
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
