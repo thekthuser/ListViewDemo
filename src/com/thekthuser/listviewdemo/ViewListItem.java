@@ -55,7 +55,15 @@ public class ViewListItem extends BaseActivity {
 
         title.setText(entry.title);
         summary.setText(entry.summary);
-        price.setText("$" + entry.price_amount);
+
+        int point = entry.price_amount.indexOf(".");
+        String price_amount = entry.price_amount.substring(0, point + 3);
+        if (price_amount.equals("0.00")) {
+            price.setText("Free");
+        } else {
+            price.setText("$" + price_amount);
+        }
+
         date.setText("Released on " + entry.release_date_human);
         new ImageDownloader(image).execute(image_url);
 
