@@ -48,6 +48,11 @@ public class ViewSavedList extends BaseActivity {
         ListView listView = (ListView) findViewById(R.id.saved_list);
         listView.setAdapter(adapter);
 
+        if (entries.length < 1) {
+            TextView saved = (TextView) findViewById(R.id.no_saved_items);
+            saved.setVisibility(View.VISIBLE);
+        }
+
 
         listView.setOnItemClickListener(new OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view, 

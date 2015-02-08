@@ -5,16 +5,19 @@
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/no_saved_items"
+        android:id="@+id/no_saved_items"
+        android:visibility="gone"
+    />
     <ListView
         android:id="@+id/saved_list"
         android:layout_height="0dp"
         android:layout_width="match_parent"
         android:layout_weight="1"
-    />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="This activity for saved items."
     />
 </LinearLayout>
 

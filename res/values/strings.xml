@@ -5,6 +5,7 @@
     <string name="share">Share</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+    <string name="no_saved_items">There are no saved items.</string>
 
     <string name="view_list_item">View List Item</string>
     <string name="view_list">View List</string>
