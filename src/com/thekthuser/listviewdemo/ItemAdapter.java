@@ -6,8 +6,6 @@ import android.database.SQLException;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import android.util.Log;
-
 public class ItemAdapter {
 
     private Context context;

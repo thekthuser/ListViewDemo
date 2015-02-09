@@ -6,7 +6,7 @@ import android.os.Parcelable;
 public class EntryImage implements Parcelable {
     public int id;
     public int imageId; // image's place in json list
-    public int entryid_id;
+    public int entryid_id; // containing Entry's unique id (see Entry.java)
     public String url;
     public int height;
 

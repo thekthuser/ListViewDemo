@@ -19,8 +19,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.content.Intent;
 
-import android.util.Log;
-import android.widget.Toast;
 
 public class ViewSavedList extends BaseActivity {
 

@@ -10,13 +10,11 @@ import android.view.View;
 import android.content.Intent;
 import android.widget.Toast;
 import android.app.ActionBar;
-
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.content.Intent;
 
-import android.util.Log;
 
 public class ViewListItem extends BaseActivity {
 
@@ -55,6 +53,7 @@ public class ViewListItem extends BaseActivity {
 
         title.setText(entry.title);
         summary.setText(entry.summary);
+
 
         int point = entry.price_amount.indexOf(".");
         String price_amount = entry.price_amount.substring(0, point + 3);

@@ -13,17 +13,17 @@ import android.widget.Button;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-
 import org.json.JSONObject;
 import org.json.JSONArray;
 import org.json.JSONException;
-
-import com.squareup.okhttp.*;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Request.Builder;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Call;
+import com.squareup.okhttp.Callback;
+import com.squareup.okhttp.Response;
 import java.io.IOException;
 
-import android.util.Log;
-
-import android.widget.Toast;
 
 public class ViewList extends BaseActivity {
 
@@ -72,11 +72,12 @@ public class ViewList extends BaseActivity {
 
                                      for (int j = 0; j < num_images; j++) {
                                          JSONObject json_image = json_images.getJSONObject(j);
-                                         //fix this hard coded id later
+                                         //non-saved Entry has id of -1
                                          images[j] = new EntryImage(-1, j, Integer.parseInt(json_entry.getJSONObject("id").getJSONObject("attributes").getString("im:id")),
                                             json_image.getString("label"), 
                                             json_image.getJSONObject("attributes").getInt("height"));
                                     }
+
 
                                      entries[i] = new Entry(-1, i, 
                                          json_entry.getJSONObject("im:name").getString("label"),
@@ -150,8 +151,6 @@ public class ViewList extends BaseActivity {
                             refresh.setOnClickListener(new OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    //Toast.makeText(getApplicationContext(), "test refresh", 
-                                        //Toast.LENGTH_LONG).show();
                                     finish();
                                     startActivity(getIntent());
                                 }
