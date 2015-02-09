@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "viewlistdemo.db";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
 
     public static final String TABLE_ENTRIES = "entries";
     public static final String TABLE_ENTRY_IMAGES = "entry_images";
@@ -48,28 +48,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         + TABLE_ENTRIES + "("
         + COLUMN_ID + " integer primary key autoincrement, "
         + COLUMN_ENTRY_ID + " integer, "
-        + COLUMN_NAME + " string, "
-        + COLUMN_SUMMARY + " string, "
-        + COLUMN_PRICE_AMOUNT + " string, "
-        + COLUMN_PRICE_CURRENCY + " string, "
-        + COLUMN_CONTENT_TYPE_TERM + " string, "
-        + COLUMN_CONTENT_TYPE_LABEL + " string, "
-        + COLUMN_RIGHTS + " string, "
-        + COLUMN_TITLE + " string, "
-        + COLUMN_LINK_REL + " string, "
-        + COLUMN_LINK_TYPE + " string, "
-        + COLUMN_LINK_HREF + " string, "
-        + COLUMN_ID_LABEL + " string, "
+        + COLUMN_NAME + " text, "
+        + COLUMN_SUMMARY + " text, "
+        + COLUMN_PRICE_AMOUNT + " text, "
+        + COLUMN_PRICE_CURRENCY + " text, "
+        + COLUMN_CONTENT_TYPE_TERM + " text, "
+        + COLUMN_CONTENT_TYPE_LABEL + " text, "
+        + COLUMN_RIGHTS + " text, "
+        + COLUMN_TITLE + " text, "
+        + COLUMN_LINK_REL + " text, "
+        + COLUMN_LINK_TYPE + " text, "
+        + COLUMN_LINK_HREF + " text, "
+        + COLUMN_ID_LABEL + " text, "
         + COLUMN_ID_ID + " integer, "
-        + COLUMN_ID_BUNDLEID + " string, "
-        + COLUMN_ARTIST_LABEL + " string, "
-        + COLUMN_ARTIST_HREF + " string, "
-        + COLUMN_CATEGORY_ID + " string, "
-        + COLUMN_CATEGORY_TERM + " string, "
-        + COLUMN_CATEGORY_SCHEME + " string, "
-        + COLUMN_CATEGORY_LABEL + " string, "
-        + COLUMN_RELEASE_DATE + " string, "
-        + COLUMN_RELEASE_DATE_HUMAN + " string)";
+        + COLUMN_ID_BUNDLEID + " text, "
+        + COLUMN_ARTIST_LABEL + " text, "
+        + COLUMN_ARTIST_HREF + " text, "
+        + COLUMN_CATEGORY_ID + " text, "
+        + COLUMN_CATEGORY_TERM + " text, "
+        + COLUMN_CATEGORY_SCHEME + " text, "
+        + COLUMN_CATEGORY_LABEL + " text, "
+        + COLUMN_RELEASE_DATE + " text, "
+        + COLUMN_RELEASE_DATE_HUMAN + " text)";
 
     public static final String ENTRY_IMAGES_CREATE = "CREATE TABLE "
         + TABLE_ENTRY_IMAGES + "("
